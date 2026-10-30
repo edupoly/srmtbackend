@@ -7,8 +7,22 @@ const {
   getAllStudentsController,
 } = require("./student.controller");
 
-router.get("/getAllStudents", getAllStudentsController);
+router.get(
+  "/getAllStudents",
+  function (req, res, next) {
+    console.log("another middleware executed");
+    next();
+  },
+  getAllStudentsController,
+);
 
-router.get("/getStudentById/:id", getStudentByIdController);
+router.get(
+  "/getStudentById/:id",
+  function (req, res, next) {
+    console.log("rukku middleware executed");
+    next();
+  },
+  getStudentByIdController,
+);
 
 module.exports = router;
